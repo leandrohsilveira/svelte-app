@@ -23,9 +23,9 @@
 </script>
 
 {#if isLoggingIn}
-  Logging in...
+  <span>Logging in...</span>
 {:else if !$isAuthenticated}
   <LoginForm on:submit={handleSubmit} />
 {:else}
-  Logged in as {$loggedName} ({$loggedUsername})
+  <span>Logged in as {$loggedName} ({$loggedUsername})</span>
 {/if}
