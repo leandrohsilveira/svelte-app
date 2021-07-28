@@ -1,3 +1,5 @@
+import type { Readable } from "svelte/store"
+
 export type Deferred<T> = {
   promise: Promise<T>
   resolve(value: T): void
@@ -16,4 +18,13 @@ export function defer<T>(): Deferred<T> {
     resolve,
     reject,
   }
+}
+
+export function fromReadable<T>(readable: Readable<T>): Promise<T> {
+  return new Promise(resolve => {
+    const unsubscribe = readable.subscribe(v => {
+      resolve(v)
+      unsubscribe()
+    })
+  })
 }
