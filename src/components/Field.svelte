@@ -13,7 +13,7 @@
 <div class="field" class:error on:blur|capture={handleBlur}>
   <slot />
   {#if error}
-    <span class="error msg">{errorMessages}</span>
+    <span data-testid="error_msg" class="error msg">{errorMessages}</span>
   {/if}
 </div>
 
