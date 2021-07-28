@@ -1,6 +1,6 @@
-import { fireEvent } from '@testing-library/dom'
 import { render } from '@testing-library/svelte'
 import { defer, Deferred, provideFactory, setContextMap } from '../../utils'
+import { AuthStoreImpl } from '../AuthStore'
 import type { LoginResult, LoginService } from './LoginService'
 import { LoginToolbarPO } from './LoginToolbar.po'
 import LoginToolbar from './LoginToolbar.svelte'
@@ -14,7 +14,10 @@ describe('LoginToolbar component', () => {
 
   beforeAll(() => {
     setContextMap(context)
-    provideFactory({ loginService })
+    provideFactory({ 
+      loginService,
+      authStore: new AuthStoreImpl({ authenticated: false }),
+    })
   })
 
   test('Should display "Logging in" during login request', async () => {
