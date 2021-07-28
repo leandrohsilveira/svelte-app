@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
-  import { Field, isValid, required, validate } from "../../components";
-  import type { LoginEvents } from "./LoginEvents";
+  import { createEventDispatcher } from 'svelte'
+  import { Field, isValid, required, validate } from '../../components'
+  import type { LoginEvents } from './LoginEvents'
 
-  export let username = "";
-  export let password = "";
+  export let username = ''
+  export let password = ''
 
-  $: usernameErrors = validate(required())(username);
-  $: passwordErrors = validate(required())(password);
-  $: isFormValid = isValid(usernameErrors, passwordErrors);
+  $: usernameErrors = validate(required())(username)
+  $: passwordErrors = validate(required())(password)
+  $: isFormValid = isValid(usernameErrors, passwordErrors)
 
-  const dispatch = createEventDispatcher<LoginEvents>();
+  const dispatch = createEventDispatcher<LoginEvents>()
 
   function handleSubmit() {
-    if (isFormValid) dispatch("submit", { username, password });
+    if (isFormValid) dispatch('submit', { username, password })
   }
 </script>
 

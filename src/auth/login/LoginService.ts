@@ -1,20 +1,20 @@
 const mocks = [
   {
-    name: "Administrator",
-    username: "admin",
-    password: "123456",
-    roles: ["admin"],
+    name: 'Administrator',
+    username: 'admin',
+    password: '123456',
+    roles: ['admin'],
   },
-];
+]
 
 export type LoginResult = {
-  username: string;
-  name: string;
-  roles: string[];
-};
+  username: string
+  name: string
+  roles: string[]
+}
 
 export interface LoginService {
-  login(username: string, password: string): Promise<LoginResult>;
+  login(username: string, password: string): Promise<LoginResult>
 }
 
 export class LoginServiceImpl implements LoginService {
@@ -23,15 +23,15 @@ export class LoginServiceImpl implements LoginService {
       setTimeout(() => {
         const user = mocks.find(
           (mock) => mock.username === username && mock.password === password
-        );
+        )
         if (user)
           resolve({
             username: user.username,
             name: user.name,
             roles: user.roles,
-          });
-        else reject(new Error("Incorrect username or password"));
-      }, 1000);
-    });
+          })
+        else reject(new Error('Incorrect username or password'))
+      }, 1000)
+    })
   }
 }

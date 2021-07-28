@@ -1,12 +1,12 @@
 <script lang="ts">
-  export let touched = false;
-  export let errors: string[] = [];
+  export let touched = false
+  export let errors: string[] = []
 
-  $: error = touched && (errors?.length ?? 0) > 0;
-  $: errorMessages = errors?.join(", ");
+  $: error = touched && (errors?.length ?? 0) > 0
+  $: errorMessages = errors?.join(', ')
 
   function handleBlur() {
-    touched = true;
+    touched = true
   }
 </script>
 

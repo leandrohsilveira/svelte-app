@@ -1,5 +1,5 @@
-import Field from "./Field.svelte";
+import Field from './Field.svelte'
 
-export * from "./validate";
+export * from './validate'
 
-export { Field };
+export { Field }

@@ -1,8 +1,8 @@
 export type LoginSubmitEventDetail = {
-  username: string;
-  password: string;
+  username: string
+  password: string
 }
 
 export type LoginEvents = {
-  submit: LoginSubmitEventDetail;
-};
+  submit: LoginSubmitEventDetail
+}

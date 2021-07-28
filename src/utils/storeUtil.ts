@@ -1,6 +1,6 @@
-import type { Readable, Subscriber } from "svelte/store";
+import type { Readable, Subscriber } from 'svelte/store'
 
-export type Selector<I, O> = (input: I) => O;
+export type Selector<I, O> = (input: I) => O
 
 export function select<S, R>(
   store: Readable<S>,
@@ -9,5 +9,5 @@ export function select<S, R>(
   return {
     subscribe: (subscriber) =>
       store.subscribe((input) => subscriber(selector(input))),
-  };
+  }
 }

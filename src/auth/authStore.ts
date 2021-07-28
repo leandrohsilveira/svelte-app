@@ -1,30 +1,30 @@
-import { Readable, writable } from "svelte/store";
-import { select } from "../utils";
+import { Readable, writable } from 'svelte/store'
+import { select } from '../utils'
 
 export type AuthenticatedState = {
-  authenticated: true;
-  username: string;
-  name: string;
-  roles: string[];
-};
+  authenticated: true
+  username: string
+  name: string
+  roles: string[]
+}
 
 export type AnonymousState = {
-  authenticated: false;
-};
+  authenticated: false
+}
 
-export type AuthState = AuthenticatedState | AnonymousState;
+export type AuthState = AuthenticatedState | AnonymousState
 
-const store = writable<AuthState>({ authenticated: false });
+const store = writable<AuthState>({ authenticated: false })
 
-export const isAuthenticated = select(store, (state) => state.authenticated);
+export const isAuthenticated = select(store, (state) => state.authenticated)
 
 export const loggedUsername = select(store, (state) =>
   state.authenticated ? state.username : undefined
-);
+)
 
 export const loggedName = select(store, (state) =>
   state.authenticated ? state.name : undefined
-);
+)
 
 export function setAuthenticated(
   username: string,
@@ -37,7 +37,7 @@ export function setAuthenticated(
     username,
     name,
     roles,
-  }));
+  }))
 }
 
-export default store as Readable<AuthState>;
+export default store as Readable<AuthState>

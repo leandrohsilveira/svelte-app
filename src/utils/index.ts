@@ -1,2 +1,2 @@
-export * from "./storeUtil";
-export * from './factory';
+export * from './storeUtil'
+export * from './factory'

@@ -1,27 +1,31 @@
 <script lang="ts">
-  import { getInstance } from "../../utils";
-  import { isAuthenticated, loggedName, loggedUsername, setAuthenticated } from "../authStore";
-  import type { LoginSubmitEventDetail } from "./LoginEvents";
-  import LoginForm from "./LoginForm.svelte";
+  import { getInstance } from '../../utils'
+  import {
+    isAuthenticated,
+    loggedName,
+    loggedUsername,
+    setAuthenticated,
+  } from '../authStore'
+  import type { LoginSubmitEventDetail } from './LoginEvents'
+  import LoginForm from './LoginForm.svelte'
 
-  export let isLoggingIn = false;
+  export let isLoggingIn = false
 
-  const loginService = getInstance("loginService");
+  const loginService = getInstance('loginService')
 
   async function handleSubmit(event: CustomEvent<LoginSubmitEventDetail>) {
-    const { username, password } = event.detail;
-    isLoggingIn = true;
-    const result = await loginService.login(username, password);;
-    isLoggingIn = false;
-    setAuthenticated(result.username, result.name, result.roles);
+    const { username, password } = event.detail
+    isLoggingIn = true
+    const result = await loginService.login(username, password)
+    isLoggingIn = false
+    setAuthenticated(result.username, result.name, result.roles)
   }
 </script>
+
 {#if isLoggingIn}
   Logging in...
+{:else if !$isAuthenticated}
+  <LoginForm on:submit={handleSubmit} />
 {:else}
-  {#if !$isAuthenticated}
-    <LoginForm on:submit={handleSubmit} />
-  {:else}
-    Logged in as {$loggedName} ({$loggedUsername})
-  {/if}
+  Logged in as {$loggedName} ({$loggedUsername})
 {/if}
