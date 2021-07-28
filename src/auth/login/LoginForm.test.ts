@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom/extend-expect'
 
-import { fireEvent, render } from '@testing-library/svelte'
+import { render } from '@testing-library/svelte'
+import { LoginFormPO } from './LoginForm.po'
 
 import LoginForm from './LoginForm.svelte'
 
@@ -8,26 +9,44 @@ describe('LoginForm component', () => {
   test("Should bind username and password properties to it's fields", () => {
     const username = 'test'
     const password = 'pass'
-    const { getByPlaceholderText } = render(LoginForm, {
-      props: { username, password },
-    })
-    const usernameInput = getByPlaceholderText('Username')
-    const passwordInput = getByPlaceholderText('Password')
-    expect(usernameInput).toHaveValue(username)
-    expect(passwordInput).toHaveValue(password)
+    const po = new LoginFormPO(
+      render(LoginForm, {
+        props: { username, password },
+      })
+    )
+    expect(po.usernameInput).toHaveValue(username)
+    expect(po.passwordInput).toHaveValue(password)
   })
 
-  it("Should emit 'submit' event with provided username and password when 'Login' button is clicked", () => {
+  it('Should emit "submit" event with provided username and password when "Login" button is clicked', async () => {
     const submit = jest.fn()
     const username = 'test'
     const password = 'pass'
-    const { getByText, component } = render(LoginForm, {
-      props: { username, password },
-    })
-    const button = getByText('Login')
-    component.$on('submit', submit)
+    const po = new LoginFormPO(
+      render(LoginForm, {
+        props: { username, password },
+      })
+    )
 
-    fireEvent.click(button)
+    po.subscribeSubmitEvent(submit)
+
+    await po.login()
+
+    expect(submit).toHaveBeenCalledWith(
+      expect.objectContaining({
+        detail: { username, password },
+      })
+    )
+  })
+
+  it('Should emit "submit" event when "Login" button is clicked after input credentials', async () => {
+    const submit = jest.fn()
+    const username = 'test'
+    const password = 'pass'
+    const po = new LoginFormPO(render(LoginForm))
+    po.subscribeSubmitEvent(submit)
+
+    await po.enterCredentialsAndLogin(username, password)
 
     expect(submit).toHaveBeenCalledWith(
       expect.objectContaining({

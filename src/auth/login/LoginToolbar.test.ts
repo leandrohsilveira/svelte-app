@@ -1,20 +1,15 @@
 import { fireEvent } from '@testing-library/dom'
 import { render } from '@testing-library/svelte'
-import { provideFactory, setContextMap } from '../../utils'
+import { defer, Deferred, provideFactory, setContextMap } from '../../utils'
 import type { LoginResult, LoginService } from './LoginService'
+import { LoginToolbarPO } from './LoginToolbar.po'
 import LoginToolbar from './LoginToolbar.svelte'
-
-function createChangeEvent(value: any) {
-  const event = new Event('change')
-  event['value'] = value
-  return event
-}
 
 describe('LoginToolbar component', () => {
   const context = new Map()
-  let result: Promise<LoginResult>
+  let deferred: Deferred<LoginResult>
   const loginService: LoginService = {
-    login: jest.fn(() => result),
+    login: jest.fn(() => deferred.promise),
   }
 
   beforeAll(() => {
@@ -23,23 +18,17 @@ describe('LoginToolbar component', () => {
   })
 
   test('Should display "Logging in" during login request', async () => {
-    let resolver: (result: LoginResult) => void
-    result = new Promise((resolve) => (resolver = resolve))
-    const { getByText, getByPlaceholderText, component } = render(LoginToolbar)
+    deferred = defer()
 
-    const usernameInput = getByPlaceholderText('Username')
-    const passwordInput = getByPlaceholderText('Password')
-    const loginButton = getByText('Login', { selector: 'button' })
+    const po = new LoginToolbarPO(render(LoginToolbar))
 
-    await fireEvent.input(usernameInput, { target: { value: 'test' } })
-    await fireEvent.input(passwordInput, { target: { value: 'pass' } })
-    await fireEvent.click(loginButton)
+    await po.loginFormPO.enterCredentialsAndLogin('test', 'pass')
 
     expect(loginService.login).toHaveBeenCalledWith('test', 'pass')
 
-    getByText('Logging in...', { selector: 'span' })
+    expect(po.loggingInSpan).toBeInTheDocument()
 
-    resolver({} as any)
-    await result
+    deferred.resolve({} as any)
+    await deferred.promise
   })
 })
