@@ -27,6 +27,12 @@
     justify-self: center;
   }
 
+  @media screen and (max-width: 1068px) {
+    section {
+      width: 90%;
+    }
+  }
+
   section > header {
     border-bottom: var(--divider);
   }
