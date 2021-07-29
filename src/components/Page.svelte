@@ -11,7 +11,7 @@
 
 <section transition:fade={fadeOptions}>
   <header class:hideHeader>
-    <h2>{title}</h2>
+    <h2 data-testid="title">{title}</h2>
   </header>
   <article>
     <slot />
