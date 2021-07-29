@@ -1,14 +1,29 @@
 <script lang="ts">
   import { LoginToolbar } from '../auth'
+
+  export let navOpened = false
+
+  function handleToggleNavClick() {
+    navOpened = !navOpened
+  }
 </script>
 
-<nav>
-  <h4>App</h4>
+<header>
+  <div class="title">
+    <button
+      class="button button-clear"
+      disabled={navOpened}
+      on:click={handleToggleNavClick}
+    >
+      Menu
+    </button>
+    <h4>App</h4>
+  </div>
   <LoginToolbar />
-</nav>
+</header>
 
 <style>
-  nav {
+  header {
     padding: 10px;
     margin: 0;
     height: 90px;
@@ -19,8 +34,13 @@
     align-items: center;
   }
 
-  nav > h4 {
+  header > .title > h4 {
     margin-bottom: 0;
     padding-bottom: 0;
+  }
+
+  header > .title {
+    display: flex;
+    align-items: center;
   }
 </style>
