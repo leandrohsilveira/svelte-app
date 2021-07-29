@@ -18,6 +18,10 @@ export interface LoginService {
 }
 
 export class LoginServiceImpl implements LoginService {
+  private get delayTime() {
+    return 200 + Math.random() * 2000
+  }
+
   login(username: string, password: string) {
     return new Promise<LoginResult>((resolve, reject) => {
       setTimeout(() => {
@@ -31,7 +35,7 @@ export class LoginServiceImpl implements LoginService {
             roles: user.roles,
           })
         else reject(new Error('Incorrect username or password'))
-      }, 1000)
+      }, this.delayTime)
     })
   }
 }
