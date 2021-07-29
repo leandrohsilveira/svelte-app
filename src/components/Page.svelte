@@ -1,12 +1,21 @@
 <script lang="ts">
+  import { fade } from 'svelte/transition'
+
+  const fadeOptions = { delay: 100, duration: 350 }
+
   export let title: string
+  export let hideHeader = false
 
   $: document.title = `App - ${title}`
 </script>
 
-<section>
-  <header><h2>{title}</h2></header>
-  <article><slot /></article>
+<section transition:fade={fadeOptions}>
+  <header class:hideHeader>
+    <h2>{title}</h2>
+  </header>
+  <article>
+    <slot />
+  </article>
 </section>
 
 <style>
@@ -20,6 +29,10 @@
 
   section > header {
     border-bottom: var(--divider);
+  }
+
+  section > header.hideHeader {
+    display: none;
   }
 
   section > article {
