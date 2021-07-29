@@ -3,6 +3,7 @@
 
   const fadeOptions = { duration: 300 }
 
+  export let fixed = false
   export let open = true
   export let overlay = true
   export let width = 250
@@ -16,11 +17,11 @@
   }
 </script>
 
-{#if open}
+{#if open || fixed}
   <nav class="drawer" {style} transition:fly={flyOptions}>
     <slot />
   </nav>
-  {#if overlay}
+  {#if overlay && !fixed}
     <div
       class="overlay"
       on:click={handleOverlayClick}
@@ -43,7 +44,7 @@
     z-index: var(--drawer-index);
     display: flex;
     flex-direction: column;
-    background-color: var(--tool-color);
+    background-color: white;
     border-right: var(--divider);
     position: fixed;
     left: 0;
