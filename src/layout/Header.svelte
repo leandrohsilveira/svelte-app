@@ -27,8 +27,8 @@
     padding: 10px;
     margin: 0;
     height: 90px;
-    background-color: #f4f5f6;
-    border-bottom: 0.1rem solid #d1d1d1;
+    background-color: var(--tool-color);
+    border-bottom: var(--divider);
     display: flex;
     justify-content: space-between;
     align-items: center;

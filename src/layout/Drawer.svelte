@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade, fly } from 'svelte/transition'
-  
+
   const fadeOptions = { duration: 300 }
 
   export let open = true
@@ -29,8 +29,8 @@
 
 <style>
   .overlay {
+    z-index: var(--overlay-index);
     background-color: #00000055;
-    z-index: 19;
     position: fixed;
     top: 0;
     left: 0;
@@ -38,11 +38,11 @@
     bottom: 0;
   }
   .drawer {
-    z-index: 20;
+    z-index: var(--drawer-index);
     display: flex;
     flex-direction: column;
-    background-color: #f4f5f6;
-    border-right: 0.1rem solid #d1d1d1;
+    background-color: var(--tool-color);
+    border-right: var(--divider);
     position: fixed;
     top: 0;
     left: 0;
@@ -59,6 +59,6 @@
   }
 
   .drawer > .item:not(:last-child) {
-    border-bottom: 0.1rem solid #d1d1d1;
+    border-bottom: var(--divider);
   }
 </style>
