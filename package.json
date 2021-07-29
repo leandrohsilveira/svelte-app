@@ -36,7 +36,8 @@
   "dependencies": {
     "milligram": "^1.4.1",
     "sirv-cli": "^1.0.12",
-    "svelte-navigator": "^3.1.5"
+    "svelte-navigator": "^3.1.5",
+    "svelte-routing": "^1.6.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
