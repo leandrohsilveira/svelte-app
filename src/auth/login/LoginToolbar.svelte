@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from 'svelte/transition'
-  import Stacked from '../../layout/Stacked.svelte'
+  import { Stacked } from '../../components'
   import { getInstance } from '../../utils'
   import type { LoginSubmitEventDetail } from './LoginEvents'
   import LoginForm from './LoginForm.svelte'
@@ -27,7 +27,7 @@
   }
 </script>
 
-<Stacked width={510} height={70} horizontal="right" vertical="middle">
+<Stacked width="510px" horizontal="right" vertical="middle">
   {#if isLoggingIn}
     <div transition:fade={fadeOptions}><span>Logging in...</span></div>
   {:else if !$isAuthenticated}

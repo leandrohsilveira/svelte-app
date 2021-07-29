@@ -2,8 +2,8 @@
   type HorizontalAlignment = 'left' | 'center' | 'right'
   type VerticalAlignment = 'top' | 'middle' | 'bottom'
 
-  export let width: number
-  export let height: number
+  export let width: string
+  export let height: string = undefined
   export let horizontal: HorizontalAlignment = 'left'
   export let vertical: VerticalAlignment = 'top'
 
@@ -13,7 +13,13 @@
   $: left = horizontal === 'left'
   $: center = horizontal === 'center'
   $: right = horizontal === 'right'
-  $: style = `width: ${width}px; height: ${height}px`
+  $: style = computeStyle(width, height)
+
+  function computeStyle(width: string, height?: string) {
+    return [`width: ${width}`, height !== undefined && `height: ${height}`]
+      .filter((style) => style)
+      .join('; ')
+  }
 </script>
 
 <div

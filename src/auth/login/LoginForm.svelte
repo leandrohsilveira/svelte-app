@@ -1,6 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
-  import { Field, isValid, required, validate } from '../../components'
+  import { Field } from '../../components'
+  import { isValid, required, validate } from '../../utils'
+
   import type { LoginEvents } from './LoginEvents'
 
   export let username = ''

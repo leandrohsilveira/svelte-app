@@ -1,5 +1,4 @@
 import Field from './Field.svelte'
+import Stacked from './Stacked.svelte'
 
-export * from './validate'
-
-export { Field }
+export { Field, Stacked }
