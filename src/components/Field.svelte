@@ -13,7 +13,7 @@
 <div class="field" class:error on:blur|capture={handleBlur}>
   <slot />
   {#if error}
-    <span data-testid="error_msg" class="error msg">{errorMessages}</span>
+    <small data-testid="error_msg" class="error msg">{errorMessages}</small>
   {/if}
 </div>
 
@@ -21,12 +21,6 @@
   .field {
     display: flex;
     flex-direction: column;
-  }
-
-  .field > :global(input),
-  .field > :global(select) {
-    height: 40px;
-    padding: 5px 10px;
   }
 
   .field.error > :global(input),

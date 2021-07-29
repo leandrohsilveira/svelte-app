@@ -15,7 +15,6 @@ export type AnonymousState = {
 export type AuthState = AuthenticatedState | AnonymousState
 
 export interface AuthStore {
-
   state: Readable<AuthState>
 
   isAuthenticated: Readable<boolean>
@@ -26,18 +25,18 @@ export interface AuthStore {
 
   setAuthenticated(username: string, name: string, roles: string[]): void
 
+  setAnonymous(): void
 }
 
 export class AuthStoreImpl implements AuthStore {
-
   constructor(state: AuthState) {
     this.store = writable(state)
   }
 
-  private store: Writable<AuthState>;
+  private store: Writable<AuthState>
 
   get state(): Readable<AuthState> {
-    return { subscribe: subscriber => this.store.subscribe(subscriber) };
+    return { subscribe: (subscriber) => this.store.subscribe(subscriber) }
   }
 
   get isAuthenticated() {
@@ -49,7 +48,7 @@ export class AuthStoreImpl implements AuthStore {
       state.authenticated ? state.username : undefined
     )
   }
-  
+
   get loggedName() {
     return select(this.state, (state) =>
       state.authenticated ? state.name : undefined
@@ -59,12 +58,8 @@ export class AuthStoreImpl implements AuthStore {
   setAnonymous() {
     this.store.set({ authenticated: false })
   }
-  
-  setAuthenticated(
-    username: string,
-    name: string,
-    roles: string[]
-  ) {
+
+  setAuthenticated(username: string, name: string, roles: string[]) {
     this.store.update((state) => ({
       ...state,
       authenticated: true,
@@ -72,6 +67,5 @@ export class AuthStoreImpl implements AuthStore {
       name,
       roles,
     }))
-  }  
-
+  }
 }

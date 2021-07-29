@@ -36,7 +36,9 @@
     />
   </Field>
 
-  <button disabled={!isFormValid} type="submit">Login</button>
+  <button class="button button-outline" disabled={!isFormValid} type="submit"
+    >Login</button
+  >
 </form>
 
 <style>
@@ -47,9 +49,5 @@
   form.horizontal > :global(.field):not(:last-child),
   form.horizontal > :global(button):not(:last-child) {
     margin-right: 10px;
-  }
-
-  form.horizontal > :global(button) {
-    height: 40px;
   }
 </style>
