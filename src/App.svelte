@@ -1,5 +1,6 @@
 <script lang="ts">
   import { AuthStoreImpl, LoginServiceImpl, LoginToolbar } from './auth'
+  import { Header } from './layout';
   import { createServiceFactory } from './utils'
 
   const loginService = new LoginServiceImpl()
@@ -11,7 +12,5 @@
   })
 </script>
 
-<header>
-  <LoginToolbar />
-</header>
+<Header />
 <main />
