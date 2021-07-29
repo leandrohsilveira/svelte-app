@@ -18,6 +18,10 @@
     isLoggingIn = false
     authStore.setAuthenticated(result.username, result.name, result.roles)
   }
+
+  function handleLogoutClick() {
+    authStore.setAnonymous()
+  }
 </script>
 
 {#if isLoggingIn}
@@ -26,4 +30,7 @@
   <LoginForm on:submit={handleSubmit} />
 {:else}
   <span>Logged in as {$loggedName} ({$loggedUsername})</span>
+  <button class="button button-clear" on:click={handleLogoutClick}
+    >Logout</button
+  >
 {/if}
