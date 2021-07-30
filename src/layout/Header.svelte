@@ -1,5 +1,7 @@
 <script lang="ts">
   import { LoginToolbar } from '../auth'
+  import IconButton from '../components/IconButton.svelte'
+  import { Menu } from '../icons'
 
   export let navOpened = false
 
@@ -10,13 +12,13 @@
 
 <header>
   <div class="title">
-    <button
-      class="button button-clear"
+    <IconButton
+      color="clear"
       disabled={navOpened}
       on:click={handleToggleNavClick}
     >
-      Menu
-    </button>
+      <Menu />
+    </IconButton>
     <h4>App</h4>
   </div>
   <LoginToolbar />
