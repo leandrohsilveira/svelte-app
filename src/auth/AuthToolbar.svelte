@@ -1,9 +1,10 @@
 <script lang="ts">
   import { fade } from 'svelte/transition'
-  import { Stacked } from '../components'
+  import { Icon, Stacked } from '../components'
   import { getInstance } from '../utils'
   import { LoginForm } from './login'
   import type { LoginSubmitEventDetail } from './login'
+  import { Person } from '../icons'
 
   export let isLoggingIn = false
 
@@ -12,7 +13,6 @@
   const authStore = getInstance('authStore')
   const isAuthenticated = authStore.isAuthenticated
   const loggedName = authStore.loggedName
-  const loggedUsername = authStore.loggedUsername
 
   async function handleSubmit(event: CustomEvent<LoginSubmitEventDetail>) {
     const { username, password } = event.detail
@@ -35,11 +35,23 @@
       <LoginForm on:submit={handleSubmit} />
     </div>
   {:else}
-    <div transition:fade={fadeOptions}>
-      <span>Logged in as {$loggedName} ({$loggedUsername})</span>
+    <div class="user" transition:fade={fadeOptions}>
+      <Icon><Person /></Icon>
+      <span>{$loggedName}</span>
       <button class="button button-clear" on:click={handleLogoutClick}>
         Logout
       </button>
     </div>
   {/if}
 </Stacked>
+
+<style>
+  .user {
+    display: flex;
+    align-items: center;
+  }
+
+  .user > span {
+    margin-left: 5px;
+  }
+</style>
