@@ -2,16 +2,15 @@ import { getContext, hasContext, setContext } from 'svelte'
 import type { AuthStore, LoginService } from '../auth'
 
 export interface ContextMap {
-  has(key: string): boolean;
-  get(key: string): any;
-  set(key: string, value: any): void;
+  has(key: string): boolean
+  get(key: string): any
+  set(key: string, value: any): void
 }
 
 export type ServiceFactory = {
   loginService: LoginService
   authStore: AuthStore
 }
-
 
 const SERVICE_FACTORY_CONTEXT_NAME = 'ServiceFactory'
 
@@ -21,7 +20,6 @@ let contextMap: ContextMap = {
   set: setContext,
 }
 
-
 function getServiceFactoryContext(): ServiceFactory {
   if (contextMap.has(SERVICE_FACTORY_CONTEXT_NAME)) {
     return contextMap.get(SERVICE_FACTORY_CONTEXT_NAME)
@@ -30,7 +28,7 @@ function getServiceFactoryContext(): ServiceFactory {
 }
 
 export function setContextMap(map: ContextMap) {
-  contextMap = map;
+  contextMap = map
 }
 
 export function createServiceFactory(serviceFactory: ServiceFactory) {

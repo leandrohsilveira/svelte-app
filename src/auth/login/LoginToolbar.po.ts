@@ -1,13 +1,12 @@
-import type { RenderResult } from "@testing-library/svelte";
-import { LoginFormPO } from "./LoginForm.po";
+import type { RenderResult } from '@testing-library/svelte'
+import { LoginFormPO } from './LoginForm.po'
 
 export class LoginToolbarPO {
-
   constructor(private render: RenderResult) {
     this.loginFormPO = new LoginFormPO(render)
   }
 
-  loginFormPO: LoginFormPO;
+  loginFormPO: LoginFormPO
 
   loggingInText = 'Logging in...'
 
@@ -22,5 +21,4 @@ export class LoginToolbarPO {
   getLoggedInAsSpan(name: string, username: string) {
     return this.render.getByText(this.getLoggedInAsText(name, username))
   }
-
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-import Item from "./Item.svelte"
+  import Item from './Item.svelte'
 
   let clickCaptured = false
 

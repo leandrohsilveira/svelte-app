@@ -1,7 +1,6 @@
-import type { RenderResult } from "@testing-library/svelte";
+import type { RenderResult } from '@testing-library/svelte'
 
 export class PagePO {
-
   constructor(private render: RenderResult) {}
 
   appName = 'App'
@@ -13,5 +12,4 @@ export class PagePO {
   get pageTitleElement() {
     return this.render.getByTestId('title')
   }
-
 }

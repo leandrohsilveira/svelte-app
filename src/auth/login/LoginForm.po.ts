@@ -22,7 +22,9 @@ export class LoginFormPO {
     return this.render.getByText(this.loginButtonText, { selector: 'button' })
   }
 
-  subscribeSubmitEvent(callback: (e: CustomEvent<LoginSubmitEventDetail>) => void) {
+  subscribeSubmitEvent(
+    callback: (e: CustomEvent<LoginSubmitEventDetail>) => void
+  ) {
     this.render.component.$on('submit', callback)
   }
 
@@ -41,9 +43,8 @@ export class LoginFormPO {
   async enterCredentialsAndLogin(username: string, password: string) {
     await Promise.all([
       this.enterUsername(username),
-      this.enterPassword(password)
+      this.enterPassword(password),
     ])
     await this.login()
   }
-  
 }
