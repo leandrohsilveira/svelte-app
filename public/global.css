@@ -18,6 +18,8 @@ body {
 }
 
 :root {
+  --primary-color: #9b4dca;
+
   --divider-color: #d1d1d1;
   --divider: 0.1rem solid var(--divider-color);
   --tool-color: #f4f5f6;
