@@ -1,4 +1,6 @@
 <script lang="ts">
+  export let label: string = undefined
+  export let name = label
   export let touched = false
   export let errors: string[] = []
 
@@ -11,6 +13,9 @@
 </script>
 
 <div class="field" class:error on:blur|capture={handleBlur}>
+  {#if typeof label === 'string'}
+    <label for={name}>{label}</label>
+  {/if}
   <slot />
   {#if error}
     <small data-testid="error_msg" class="error msg">{errorMessages}</small>
