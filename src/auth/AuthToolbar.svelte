@@ -2,7 +2,8 @@
   import { fade } from 'svelte/transition'
   import { Stacked } from '../components'
   import { getInstance } from '../utils'
-  import { LoginSubmitEventDetail, LoginForm } from './login'
+  import { LoginForm } from './login'
+  import type { LoginSubmitEventDetail } from './login'
 
   export let isLoggingIn = false
 
@@ -36,9 +37,9 @@
   {:else}
     <div transition:fade={fadeOptions}>
       <span>Logged in as {$loggedName} ({$loggedUsername})</span>
-      <button class="button button-clear" on:click={handleLogoutClick}
-        >Logout</button
-      >
+      <button class="button button-clear" on:click={handleLogoutClick}>
+        Logout
+      </button>
     </div>
   {/if}
 </Stacked>

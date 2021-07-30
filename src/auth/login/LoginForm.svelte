@@ -38,9 +38,9 @@
     />
   </Field>
 
-  <button class="button button-outline" disabled={!isFormValid} type="submit"
-    >Login</button
-  >
+  <button class="button button-outline" disabled={!isFormValid} type="submit">
+    Login
+  </button>
 </form>
 
 <style>

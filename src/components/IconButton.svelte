@@ -21,9 +21,9 @@
   }
 </script>
 
-<button {...$$restProps} class={buttonClass}
-  ><Icon color={iconColor}><slot /></Icon></button
->
+<button {...$$restProps} class={buttonClass}>
+  <Icon color={iconColor}><slot /></Icon>
+</button>
 
 <style>
   button {

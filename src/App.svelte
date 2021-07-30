@@ -4,7 +4,7 @@
   import { createServiceFactory } from './utils'
   import { Page } from './components'
   import Layout from './layout'
-  import { LocalStorageService } from './utils';
+  import { LocalStorageService } from './utils'
 
   const storageService = new LocalStorageService(window.localStorage)
   const loginService = new LoginServiceImpl()
@@ -13,7 +13,7 @@
   createServiceFactory({
     loginService,
     authStore,
-    storageService
+    storageService,
   })
 </script>
 
