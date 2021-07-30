@@ -8,13 +8,13 @@
 </script>
 
 {#if fixed}
-  <Slider open={true} overlay={false} size={width} position="bottom">
+  <Slider open={true} overlay={false} size={width} position="left">
     <nav class="drawer">
       <slot />
     </nav>
   </Slider>
 {:else}
-  <Slider bind:open overlay={overlay && !fixed} size={width} position="bottom">
+  <Slider bind:open {overlay} size={width} position="left">
     <nav class="drawer">
       <slot />
     </nav>
