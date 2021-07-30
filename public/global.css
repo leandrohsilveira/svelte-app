@@ -25,6 +25,7 @@ body {
   --tool-color: #f4f5f6;
 
   /* indexes */
+  --slider-index: 20;
   --drawer-index: 20;
   --overlay-index: 19;
 }
