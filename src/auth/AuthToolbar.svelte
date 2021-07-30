@@ -1,9 +1,8 @@
 <script lang="ts">
   import { fade } from 'svelte/transition'
-  import { Stacked } from '../../components'
-  import { getInstance } from '../../utils'
-  import type { LoginSubmitEventDetail } from './LoginEvents'
-  import LoginForm from './LoginForm.svelte'
+  import { Stacked } from '../components'
+  import { getInstance } from '../utils'
+  import { LoginSubmitEventDetail, LoginForm } from './login'
 
   export let isLoggingIn = false
 

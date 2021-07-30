@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LoginToolbar } from '../auth'
+  import { AuthToolbar } from '../auth'
   import IconButton from '../components/IconButton.svelte'
   import { Menu } from '../icons'
 
@@ -21,7 +21,7 @@
     </IconButton>
     <h4>App</h4>
   </div>
-  <LoginToolbar />
+  <AuthToolbar />
 </header>
 
 <style>

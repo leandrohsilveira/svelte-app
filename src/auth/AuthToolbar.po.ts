@@ -1,7 +1,7 @@
 import type { RenderResult } from '@testing-library/svelte'
-import { LoginFormPO } from './LoginForm.po'
+import { LoginFormPO } from './login/LoginForm.po'
 
-export class LoginToolbarPO {
+export class AuthToolbarPO {
   constructor(private render: RenderResult) {
     this.loginFormPO = new LoginFormPO(render)
   }

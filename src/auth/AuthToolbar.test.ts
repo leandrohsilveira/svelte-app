@@ -1,12 +1,12 @@
 import { render } from '@testing-library/svelte'
 import { tick } from 'svelte'
-import { defer, Deferred, provideFactory, setContextMap } from '../../utils'
-import { AuthStoreImpl } from '../AuthStore'
-import type { LoginResult, LoginService } from './LoginService'
-import { LoginToolbarPO } from './LoginToolbar.po'
-import LoginToolbar from './LoginToolbar.svelte'
+import { defer, Deferred, provideFactory, setContextMap } from '../utils'
+import { AuthStoreImpl } from './AuthStore'
+import type { LoginResult, LoginService } from './login'
+import { AuthToolbarPO } from './AuthToolbar.po'
+import AuthToolbar from './AuthToolbar.svelte'
 
-describe('LoginToolbar component', () => {
+describe('AuthToolbar component', () => {
   const name = 'Test User'
   const username = 'test'
   const password = 'pass'
@@ -30,7 +30,7 @@ describe('LoginToolbar component', () => {
     })
     deferred = defer()
 
-    const po = new LoginToolbarPO(render(LoginToolbar))
+    const po = new AuthToolbarPO(render(AuthToolbar))
 
     await po.loginFormPO.enterCredentialsAndLogin(username, password)
 
@@ -48,7 +48,7 @@ describe('LoginToolbar component', () => {
     })
     deferred = defer()
 
-    const po = new LoginToolbarPO(render(LoginToolbar))
+    const po = new AuthToolbarPO(render(AuthToolbar))
 
     await po.loginFormPO.enterCredentialsAndLogin(username, password)
 
@@ -70,7 +70,7 @@ describe('LoginToolbar component', () => {
     })
     deferred = defer()
 
-    const po = new LoginToolbarPO(render(LoginToolbar))
+    const po = new AuthToolbarPO(render(AuthToolbar))
 
     po.getLoggedInAsSpan(name, username)
   })
