@@ -1,5 +1,6 @@
 <script lang="ts">
   import { fade, fly } from 'svelte/transition'
+  import { cubicInOut } from 'svelte/easing'
 
   type SlidePosition = 'left' | 'right' | 'top' | 'bottom'
 
@@ -30,13 +31,13 @@
     const duration = 300
     switch (pos) {
       case 'top':
-        return { duration, x: 0, y: size * -1 }
+        return { duration, easing: cubicInOut, x: 0, y: size * -1 }
       case 'bottom':
-        return { duration, x: 0, y: winHeight + size }
+        return { duration, easing: cubicInOut, x: 0, y: winHeight + size }
       case 'left':
-        return { duration, x: size * -1, y: 0 }
+        return { duration, easing: cubicInOut, x: size * -1, y: 0 }
       case 'right':
-        return { duration, x: winWidth + size, y: 0 }
+        return { duration, easing: cubicInOut, x: winWidth + size, y: 0 }
     }
   }
 
