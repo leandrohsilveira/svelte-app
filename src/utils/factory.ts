@@ -1,5 +1,6 @@
 import { getContext, hasContext, setContext } from 'svelte'
 import type { AuthStore, LoginService } from '../auth'
+import type { StorageService } from './StorageService'
 
 export interface ContextMap {
   has(key: string): boolean
@@ -10,6 +11,7 @@ export interface ContextMap {
 export type ServiceFactory = {
   loginService: LoginService
   authStore: AuthStore
+  storageService: StorageService
 }
 
 const SERVICE_FACTORY_CONTEXT_NAME = 'ServiceFactory'

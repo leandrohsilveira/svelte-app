@@ -1,5 +1,5 @@
-import { Readable, Writable, writable } from 'svelte/store'
-import { select } from '../utils'
+import { Readable, Unsubscriber, Writable, writable } from 'svelte/store'
+import { select, StorageService } from '../utils'
 
 export type AuthenticatedState = {
   authenticated: true
@@ -29,11 +29,17 @@ export interface AuthStore {
 }
 
 export class AuthStoreImpl implements AuthStore {
-  constructor(state: AuthState) {
-    this.store = writable(state)
+  constructor(state: AuthState, storageService?: StorageService) {
+    this.store = writable(storageService?.get('authStore') ?? state)
+    if (storageService)
+      this.unsubscriber = this.state.subscribe(
+        (state) => state && storageService.set('authStore', state)
+      )
   }
 
   private store: Writable<AuthState>
+
+  unsubscriber?: Unsubscriber
 
   get state(): Readable<AuthState> {
     return { subscribe: (subscriber) => this.store.subscribe(subscriber) }
