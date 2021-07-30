@@ -28,3 +28,12 @@ body {
   --drawer-index: 20;
   --overlay-index: 19;
 }
+
+body button.button {
+  display: flex;
+  align-items: center;
+}
+
+body button.button-icon {
+  padding: 1rem;
+}

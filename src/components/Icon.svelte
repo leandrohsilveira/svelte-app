@@ -13,10 +13,13 @@
     height: 24px;
   }
 
+  :global(.button-icon.button-clear) > .icon > :global(svg),
+  :global(.button-icon.button-outline) > .icon > :global(svg),
   .icon.primary > :global(svg) {
     fill: var(--primary-color);
   }
 
+  :global(.button-icon) > .icon > :global(svg),
   .icon.light > :global(svg) {
     fill: white;
   }
