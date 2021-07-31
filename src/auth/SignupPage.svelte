@@ -2,7 +2,7 @@
   import { createEventDispatcher } from 'svelte'
 
   import { Page } from '../components'
-  import UserForm from '../user/UserForm/UserForm.svelte'
+  import { UserForm } from '../user'
 
   type Events = {
     signUpSucessful: void
