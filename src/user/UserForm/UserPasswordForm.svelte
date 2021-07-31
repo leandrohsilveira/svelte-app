@@ -31,6 +31,7 @@
     name="current-password"
     label="Current password:"
     errors={currentPasswordErrors}
+    --margin-bottom="2em"
   >
     <input
       type="password"
@@ -41,7 +42,12 @@
     />
   </Field>
 {/if}
-<Field name="new-password" label="Password:" errors={passwordErrors}>
+<Field
+  name="new-password"
+  label="Password:"
+  errors={passwordErrors}
+  --margin-bottom="2em"
+>
   <input
     type="password"
     name="new-password"
@@ -54,6 +60,7 @@
   name="confirm-password"
   label="Confirm password:"
   errors={confirmPasswordErrors}
+  --margin-bottom="2em"
 >
   <input
     type="password"
