@@ -1,9 +1,9 @@
 <script lang="ts">
   import { Route } from 'svelte-routing'
-  import rootNavigator from '../routes';
+  import rootNavigator from '../routes'
   import { AnonymousGuard, AuthenticatedGuard } from './guards'
+  import MyDataPage from './MyDataPage.svelte'
   import SignupPage from './SignupPage.svelte'
-
 </script>
 
 <Route path="/signup">
@@ -15,5 +15,10 @@
   </AnonymousGuard>
 </Route>
 <Route path="/auth/user/edit">
-  <AuthenticatedGuard><div>Edit user page :)</div></AuthenticatedGuard>
+  <AuthenticatedGuard>
+    <MyDataPage
+      on:saveSuccessful={rootNavigator.home}
+      on:cancel={rootNavigator.home}
+    />
+  </AuthenticatedGuard>
 </Route>
