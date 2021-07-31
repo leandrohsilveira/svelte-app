@@ -6,5 +6,6 @@ export { default as Page } from './Page.svelte'
 export { default as Icon } from './Icon.svelte'
 export { default as Slider } from './Slider.svelte'
 export { default as ButtonContainer } from './ButtonContainer.svelte'
+export { default as Guard } from './Guard.svelte'
 
 export * from './color'
