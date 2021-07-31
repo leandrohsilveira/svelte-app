@@ -28,9 +28,18 @@
     flex-direction: column;
   }
 
+  .field:not(.error) {
+    margin-bottom: var(--margin-bottom);
+  }
+
+  .field.error > label {
+    color: red;
+  }
+
   .field.error > :global(input),
   .field.error > :global(select),
   .field.error > :global(textarea) {
+    color: red;
     border-color: red;
   }
 
