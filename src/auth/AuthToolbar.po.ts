@@ -14,11 +14,7 @@ export class AuthToolbarPO {
     return this.render.getByText(this.loggingInText, { selector: 'span' })
   }
 
-  getLoggedInAsText(name: string, username: string) {
-    return `Logged in as ${name} (${username})`
-  }
-
-  getLoggedInAsSpan(name: string, username: string) {
-    return this.render.getByText(this.getLoggedInAsText(name, username))
+  get loggedNameSpan() {
+    return this.render.getByTestId('loggedName')
   }
 }

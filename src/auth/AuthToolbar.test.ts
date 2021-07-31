@@ -56,7 +56,7 @@ describe('AuthToolbar component', () => {
     await deferred.promise
     await tick()
 
-    po.getLoggedInAsSpan(name, username)
+    expect(po.loggedNameSpan).toHaveTextContent(name)
   })
 
   test('Should display "Logged in as $name ($username)" when user actually is logged in', async () => {
@@ -72,6 +72,6 @@ describe('AuthToolbar component', () => {
 
     const po = new AuthToolbarPO(render(AuthToolbar))
 
-    po.getLoggedInAsSpan(name, username)
+    expect(po.loggedNameSpan).toHaveTextContent(name)
   })
 })

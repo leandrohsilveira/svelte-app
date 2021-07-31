@@ -37,7 +37,7 @@
   {:else}
     <div class="user" transition:fade={fadeOptions}>
       <Icon><Person /></Icon>
-      <span>{$loggedName}</span>
+      <span data-testid="loggedName">{$loggedName}</span>
       <button class="button button-clear" on:click={handleLogoutClick}>
         Logout
       </button>
