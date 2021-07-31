@@ -33,9 +33,14 @@ export function maxLength(length: number): ValidateFn {
       : []
 }
 
-export function equalTo(otherValue: string | number, message: string): ValidateFn {
+export function equalTo(
+  otherValue: string | number,
+  message: string
+): ValidateFn {
   return (value) =>
-    isStringOrNumber(value) && isStringOrNumber(otherValue) && value === otherValue
+    isStringOrNumber(value) &&
+    isStringOrNumber(otherValue) &&
+    value !== otherValue
       ? [message]
       : []
 }
