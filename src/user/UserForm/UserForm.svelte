@@ -13,11 +13,11 @@
   export let username: string = ''
   export let password: string = ''
 
+  let showPassword = !edit
   let isInfoValid = false
   let isPasswordValid = false
-  let showPassword = !edit
 
-  $: isValid = isInfoValid && isPasswordValid
+  $: isValid = isInfoValid && (!showPassword || isPasswordValid)
 
   const dispatch = createEventDispatcher<UserFormEvents>()
 
@@ -35,7 +35,7 @@
   }
 </script>
 
-<form on:submit={handleSubmit}>
+<form on:submit|preventDefault={handleSubmit}>
   <UserInfoForm bind:name bind:username bind:valid={isInfoValid} />
   {#if edit}
     <div class="change-password-check">
