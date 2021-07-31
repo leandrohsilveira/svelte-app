@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Router, Route } from 'svelte-routing'
-  import { AuthStoreImpl, LoginServiceImpl } from './auth'
+  import { AuthRouter, AuthStoreImpl, LoginServiceImpl } from './auth'
   import { createServiceFactory } from './utils'
   import { Page } from './components'
   import Layout from './layout'
@@ -28,5 +28,6 @@
     <Route path="/contact">
       <Page title="Contact us">Contact us :)</Page>
     </Route>
+    <AuthRouter />
   </Layout>
 </Router>
