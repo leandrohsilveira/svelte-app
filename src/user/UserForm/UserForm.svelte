@@ -36,7 +36,7 @@
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
-  <UserInfoForm bind:name bind:username bind:valid={isInfoValid} />
+  <UserInfoForm bind:name bind:username bind:valid={isInfoValid} {edit} />
   {#if edit}
     <div class="change-password-check">
       <input
@@ -44,10 +44,11 @@
         name="change-password"
         bind:checked={showPassword}
       />
+      <small class="change-password">Change password</small>
     </div>
   {/if}
   {#if showPassword}
-    <UserPasswordForm {edit} bind:password bind:valid={isPasswordValid} />
+    <UserPasswordForm bind:password bind:valid={isPasswordValid} {edit} />
   {/if}
   <ButtonContainer>
     <button type="submit" disabled={!isValid}>{saveButtonLabel}</button>
@@ -56,3 +57,14 @@
     </button>
   </ButtonContainer>
 </form>
+
+<style>
+  .change-password-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+  .change-password-check > .change-password {
+    margin-left: 1em;
+  }
+</style>

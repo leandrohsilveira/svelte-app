@@ -2,6 +2,7 @@
   import { Field } from '../../components'
   import { isValid, maxLength, required, validate } from '../../utils'
 
+  export let edit: boolean
   export let name: string
   export let username: string
   export let valid: boolean
@@ -24,6 +25,7 @@
     name="username"
     autocomplete="username"
     placeholder="Username"
+    disabled={edit}
     bind:value={username}
   />
 </Field>
