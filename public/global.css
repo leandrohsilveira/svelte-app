@@ -9,7 +9,7 @@ body fieldset,
 body input,
 body select,
 body textarea {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 body {
