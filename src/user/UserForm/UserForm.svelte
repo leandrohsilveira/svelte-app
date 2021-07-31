@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
+  import { ButtonContainer } from '../../components'
   import type { UserFormEvents } from './UserFormEvents'
 
   import UserInfoForm from './UserInfoForm.svelte'
@@ -48,10 +49,10 @@
   {#if showPassword}
     <UserPasswordForm {edit} bind:password bind:valid={isPasswordValid} />
   {/if}
-  <div class="button-container">
+  <ButtonContainer>
     <button type="submit" disabled={!isValid}>{saveButtonLabel}</button>
     <button type="button" class="button button-outline" on:click={handleCancel}>
       Cancel
     </button>
-  </div>
+  </ButtonContainer>
 </form>
