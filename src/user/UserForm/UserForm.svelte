@@ -6,10 +6,11 @@
   import UserPasswordForm from './UserPasswordForm.svelte'
 
   export let edit: boolean
-  export let name: string
-  export let username: string
-  export let password: string
   export let saveButtonLabel: string
+
+  export let name: string = undefined
+  export let username: string = undefined
+  export let password: string = undefined
 
   let isInfoValid = false
   let isPasswordValid = false
