@@ -2,7 +2,7 @@ import { render } from '@testing-library/svelte'
 import { tick } from 'svelte'
 import { defer, Deferred, provideFactory, setContextMap } from '../utils'
 import { AuthStoreImpl } from './AuthStore'
-import type { LoginResult, LoginService } from './login'
+import type { LoginResult } from './login'
 import { AuthToolbarPO } from './AuthToolbar.po'
 import AuthToolbar from './AuthToolbar.svelte'
 
@@ -12,7 +12,7 @@ describe('AuthToolbar component', () => {
   const password = 'pass'
   let context: Map<string, any>
   let deferred: Deferred<LoginResult>
-  const loginService: LoginService = {
+  const loginService: any = {
     login: jest.fn(() => deferred.promise),
   }
 

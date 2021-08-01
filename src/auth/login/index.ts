@@ -1,6 +1,4 @@
-import LoginForm from './LoginForm.svelte'
+export { default as LoginForm } from './LoginForm.svelte'
 
 export * from './LoginService'
 export * from './LoginEvents'
-
-export { LoginForm }
