@@ -1,4 +1,4 @@
-import { navigate } from "svelte-navigator";
+import { navigate } from 'svelte-routing'
 
 export type NavigationHandler = () => void
 
