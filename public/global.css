@@ -12,6 +12,12 @@ body textarea {
   margin: 0;
 }
 
+body input:disabled {
+  background-color: lightgrey;
+  color: grey;
+  cursor: not-allowed;
+}
+
 body {
   padding: 0;
   margin: 0;
