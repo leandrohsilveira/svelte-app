@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Link } from 'svelte-routing'
+  import { link, active } from '../router'
   import { Drawer, Item, Stacked } from '../components'
   import { getInstance } from '../utils'
   import Header from './Header.svelte'
@@ -20,16 +20,26 @@
 <Header bind:navOpened={drawerOpened} />
 <Drawer bind:open={drawerOpened} {fixed}>
   <h4 class="logo">App</h4>
-  <Item on:click={toggleDrawer}><Link to="/">Home</Link></Item>
+  <Item on:click={toggleDrawer}>
+    <a href="/" use:link use:active data-when="/" data-exact>Home</a>
+  </Item>
   {#if $isAuthenticated}
     <Item on:click={toggleDrawer}>
-      <Link to="/auth/user/edit">My data</Link>
+      <a href="/auth/user/edit" use:link use:active data-when="/auth/user/edit">
+        My data
+      </a>
     </Item>
   {:else}
-    <Item on:click={toggleDrawer}><Link to="/signup">Sign-up</Link></Item>
+    <Item on:click={toggleDrawer}>
+      <a href="/signup" use:link use:active data-when="/signup">Sign-up</a>
+    </Item>
   {/if}
-  <Item on:click={toggleDrawer}><Link to="/about">About us</Link></Item>
-  <Item on:click={toggleDrawer}><Link to="/contact">Contact us</Link></Item>
+  <Item on:click={toggleDrawer}>
+    <a href="/about" use:link use:active data-when="/about">About us</a>
+  </Item>
+  <Item on:click={toggleDrawer}>
+    <a href="/contact" use:link use:active data-when="/contact">Contact us</a>
+  </Item>
 </Drawer>
 <main class:fixed>
   <Stacked width="100%" horizontal="center"><slot /></Stacked>
@@ -44,6 +54,10 @@
     margin-bottom: 0px;
     background-color: var(--tool-color);
     border-bottom: var(--divider);
+  }
+
+  :global(a.active) {
+    background-color: var(--tool-color);
   }
 
   main.fixed {

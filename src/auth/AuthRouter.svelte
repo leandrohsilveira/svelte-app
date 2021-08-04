@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Route } from 'svelte-routing'
+  import { Route } from '../router'
   import rootNavigator from '../routes'
   import { AnonymousGuard, AuthenticatedGuard } from './guards'
   import MyDataPage from './MyDataPage.svelte'

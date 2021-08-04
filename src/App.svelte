@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Router, Route } from 'svelte-routing'
+  import { BrowserRouter, Route } from './router'
   import { AuthRouter, AuthStoreImpl, LoginServiceImpl } from './auth'
   import { createServiceFactory } from './utils'
   import { Page } from './components'
@@ -17,9 +17,9 @@
   })
 </script>
 
-<Router>
+<BrowserRouter>
   <Layout>
-    <Route path="/">
+    <Route path="/" exact>
       <Page title="Home">Wellcome to the app :)</Page>
     </Route>
     <Route path="/about">
@@ -30,4 +30,4 @@
     </Route>
     <AuthRouter />
   </Layout>
-</Router>
+</BrowserRouter>
