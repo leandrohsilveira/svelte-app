@@ -1,11 +1,13 @@
 <script lang="ts">
   import { link, active } from '../router'
+  import rootNavigator from '../routes'
+  import authNavigator from '../auth/routes'
+
   import { Drawer, Item, Stacked } from '../components'
   import { getInstance } from '../utils'
   import Header from './Header.svelte'
 
   const { isAuthenticated } = getInstance('authStore')
-
   let drawerOpened = false
   let innerWidth: number
 
@@ -21,24 +23,58 @@
 <Drawer bind:open={drawerOpened} {fixed}>
   <h4 class="logo">App</h4>
   <Item on:click={toggleDrawer}>
-    <a href="/" use:link use:active data-when="/" data-exact>Home</a>
+    <a
+      href={rootNavigator.routes.home}
+      use:link
+      use:active
+      data-when={rootNavigator.routes.home}
+      data-exact
+    >
+      Home
+    </a>
   </Item>
   {#if $isAuthenticated}
     <Item on:click={toggleDrawer}>
-      <a href="/auth/user/edit" use:link use:active data-when="/auth/user/edit">
+      <a
+        href={authNavigator.routes.editCurrentUser}
+        use:link
+        use:active
+        data-when={authNavigator.routes.editCurrentUser}
+      >
         My data
       </a>
     </Item>
   {:else}
     <Item on:click={toggleDrawer}>
-      <a href="/signup" use:link use:active data-when="/signup">Sign-up</a>
+      <a
+        href={authNavigator.routes.signup}
+        use:link
+        use:active
+        data-when={authNavigator.routes.signup}
+      >
+        Sign-up
+      </a>
     </Item>
   {/if}
   <Item on:click={toggleDrawer}>
-    <a href="/about" use:link use:active data-when="/about">About us</a>
+    <a
+      href={rootNavigator.routes.about}
+      use:link
+      use:active
+      data-when={rootNavigator.routes.about}
+    >
+      About us
+    </a>
   </Item>
   <Item on:click={toggleDrawer}>
-    <a href="/contact" use:link use:active data-when="/contact">Contact us</a>
+    <a
+      href={rootNavigator.routes.contact}
+      use:link
+      use:active
+      data-when={rootNavigator.routes.contact}
+    >
+      Contact us
+    </a>
   </Item>
 </Drawer>
 <main class:fixed>

@@ -1,4 +1,6 @@
 export * from './store'
 export * from './actions'
+export * from './navigator'
 export { default as BrowserRouter } from './BrowserRouter.svelte'
 export { default as Route } from './Route.svelte'
+export { default as RequireMatch } from './RequireMatch.svelte'

@@ -40,14 +40,13 @@ type Source = {
 let source: Source
 let store: Writable<RouteState>
 
+const STATE_NOT_CONFIGURED_ERROR =
+  'Router store not provided. Use BrowserRouter component or setup function to provide a store'
+
 export const state: Readable<RouteState> = {
   subscribe(subscriber, invalidate) {
-    if (store) {
-      return store.subscribe(subscriber, invalidate)
-    }
-    throw new Error(
-      'Router state not configured, use BrowserRouter component or setup function to configure it'
-    )
+    if (!store) throw new Error(STATE_NOT_CONFIGURED_ERROR)
+    return store.subscribe(subscriber, invalidate)
   },
 }
 
@@ -154,6 +153,7 @@ export function setup(_source: Source = window) {
 }
 
 export function navigate(url: string, options?: NavigateOptions) {
+  if (!store) throw new Error(STATE_NOT_CONFIGURED_ERROR)
   store.update((state) => {
     if (state.url !== url) return createRouteState(url, options)
     return state
@@ -161,6 +161,7 @@ export function navigate(url: string, options?: NavigateOptions) {
 }
 
 export function synchronizeStoreAndHistory(): Unsubscriber {
+  if (!store) throw new Error(STATE_NOT_CONFIGURED_ERROR)
   const unsubscriber = store.subscribe((state) => {
     if (state.url !== source.location.pathname + source.location.search)
       pushToHistory(source, state.url, state.replace, state.state)

@@ -1,7 +1,6 @@
 export * from './StorageService'
 export * from './async'
 export * from './factory'
-export * from './router'
 export * from './storeUtil'
 export * from './uuid'
 export * from './validate'

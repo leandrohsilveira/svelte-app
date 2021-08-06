@@ -1,13 +1,15 @@
-import { createNavigationHandler, NavigationHandler } from './utils'
+import { createNavigator } from './router'
 
-type Routes = 'home'
+export type RootNavigator = {
+  home(): void
+  about(): void
+  contact(): void
+}
 
-export const routes: Record<Routes, string> = {
+const navigator = createNavigator<RootNavigator>({
   home: '/',
-}
-
-const navigator: Record<Routes, NavigationHandler> = {
-  home: createNavigationHandler(routes.home),
-}
+  about: '/about',
+  contact: '/contact',
+})
 
 export default navigator

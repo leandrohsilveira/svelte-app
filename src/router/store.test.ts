@@ -9,6 +9,8 @@ import {
 } from './store'
 
 describe('router > store', () => {
+  const UUID_REGEX =
+    '^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}$'
   let unsubscribers: Unsubscriber[]
 
   beforeEach(() => {
@@ -121,6 +123,18 @@ describe('router > store', () => {
       expect(match.params).toEqual({ id })
     })
 
+    test('Should map path parameter "id" to params with spec "path/{ id }/to"', () => {
+      const match = getMatchRoute(currentState.match('path/{ id }/to'))
+      expect(match.params).toEqual({ id })
+    })
+
+    test('Should map path parameter "id" to params with spec "path/{ id : ${UUID_REGEX} }/to"', () => {
+      const match = getMatchRoute(
+        currentState.match(`path/{ id : ${UUID_REGEX} }/to`)
+      )
+      expect(match.score).toEqual(0)
+    })
+
     test('Should map query parameter "query" to params with spec "path/{id}/to"', () => {
       const match = getMatchRoute(currentState.match('path/{id}/to'))
       expect(match.query).toEqual({ query: [query] })
@@ -136,11 +150,9 @@ describe('router > store', () => {
       expect(match).toBeFalsy()
     })
 
-    test("Should match to spec 'path/{id:^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}$}/to'", () => {
+    test("Should match to spec 'path/{id:${UUID_REGEX}}/to'", () => {
       const match = getMatchRoute(
-        currentState.match(
-          'path/{id:^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[0-9a-f]{4}-[0-9a-f]{12}$}/to'
-        )
+        currentState.match(`path/{id:${UUID_REGEX}}/to`)
       )
       expect(match.score).toEqual(0)
     })
