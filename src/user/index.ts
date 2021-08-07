@@ -1,3 +1,5 @@
 export { default as UserForm } from './UserForm'
+export { default as createUserNavigator } from './routes'
+export * from './routes'
 export * from './UserForm'
 export * from './user-roles'

@@ -16,6 +16,13 @@ const userMocks: User[] = [
     password: '123456',
     roles: [UserRole.USER, UserRole.ADMIN],
   },
+  {
+    id: '66bdca73-5549-4c3b-a937-8cf35fc4f239',
+    name: 'Leandro',
+    username: 'silveira',
+    password: '123456789',
+    roles: [UserRole.USER],
+  },
 ]
 
 export default userMocks

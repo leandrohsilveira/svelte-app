@@ -7,6 +7,8 @@
   import Header from './Header.svelte'
   import AuthenticatedGuard from '../auth/guards/AuthenticatedGuard.svelte'
   import AnonymousGuard from '../auth/guards/AnonymousGuard.svelte'
+  import { userNavigator } from '../navigators'
+  import AdminGuard from '../auth/guards/AdminGuard.svelte'
 
   let drawerOpened = false
   let innerWidth: number
@@ -57,6 +59,18 @@
       </a>
     </Item>
   </AnonymousGuard>
+  <AdminGuard displayNotAllowed={false}>
+    <Item on:click{toggleDrawer}>
+      <a
+        href={userNavigator.routes.usersList}
+        use:link
+        use:active
+        data-when={userNavigator.routes.usersList}
+      >
+        Users List
+      </a>
+    </Item>
+  </AdminGuard>
   <Item on:click={toggleDrawer}>
     <a
       href={rootNavigator.routes.about}
