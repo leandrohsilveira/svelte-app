@@ -3,12 +3,16 @@
   import { getInstance } from '../../utils'
 
   const { isAuthenticated } = getInstance('authStore')
+
+  export let displayNotAllowed = true
 </script>
 
-<Guard allowed={$isAuthenticated}>
+<Guard allowed={$isAuthenticated} {displayNotAllowed}>
   <slot />
 
-  <Page title="Unauthorized" slot="forbidden">
-    Ops! You need to login before having access to this page ;)
-  </Page>
+  <slot name="forbidden" slot="forbidden">
+    <Page title="Unauthorized">
+      Ops! You need to login before having access to this page ;)
+    </Page>
+  </slot>
 </Guard>

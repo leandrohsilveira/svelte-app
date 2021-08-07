@@ -15,7 +15,7 @@
     />
   </AnonymousGuard>
 </Route>
-<Route path={authNavigator.routes.editCurrentUser}>
+<Route path={authNavigator.routes.editCurrentUser} exact>
   <AuthenticatedGuard>
     <MyDataPage
       on:saveSuccessful={rootNavigator.handlers.home}

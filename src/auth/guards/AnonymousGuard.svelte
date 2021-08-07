@@ -8,6 +8,8 @@
 
   const { isAuthenticated } = getInstance('authStore')
 
+  export let displayNotAllowed = true
+
   const dispatch = createEventDispatcher<Events>()
 
   onMount(() => {
@@ -17,10 +19,12 @@
   })
 </script>
 
-<Guard allowed={!$isAuthenticated}>
+<Guard allowed={!$isAuthenticated} {displayNotAllowed}>
   <slot />
 
-  <Page title="Forbidden" slot="forbidden">
-    Ops! This page is intended for those who is not authenticated yet
-  </Page>
+  <slot name="forbidden" slot="forbidden">
+    <Page title="Forbidden">
+      Ops! This page is intended for those who is not authenticated yet
+    </Page>
+  </slot>
 </Guard>
