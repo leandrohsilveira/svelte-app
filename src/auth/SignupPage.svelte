@@ -4,7 +4,7 @@
   import type { UserFormData } from '../user'
   import { Page } from '../components'
   import { UserForm } from '../user'
-  import { getInstance } from '../utils'
+  import appFactory from '../factories'
 
   type Events = {
     signUpSucessful: void
@@ -13,7 +13,7 @@
 
   let signingUp = false
 
-  const loginService = getInstance('loginService')
+  const loginService = appFactory.loginService
   const dispatch = createEventDispatcher<Events>()
 
   async function handleSignUp(e: CustomEvent<UserFormData>) {

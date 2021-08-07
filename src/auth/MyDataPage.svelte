@@ -1,15 +1,15 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte'
   import { Page } from '../components'
+  import appFactory from '../factories'
   import { UserForm } from '../user'
-  import { getInstance } from '../utils'
 
   type Events = {
     saveSuccessful: void
     cancel: void
   }
 
-  const { loggedName, loggedUsername } = getInstance('authStore')
+  const { loggedName, loggedUsername } = appFactory.authStore
 
   const dispatch = createEventDispatcher<Events>()
 

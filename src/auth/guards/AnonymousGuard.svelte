@@ -2,11 +2,11 @@
   import { createEventDispatcher, onMount } from 'svelte'
 
   import { Guard, Page } from '../../components'
-  import { getInstance } from '../../utils'
+  import appFactory from '../../factories'
 
   type Events = { forbidden: void }
 
-  const { isAuthenticated } = getInstance('authStore')
+  const { isAuthenticated } = appFactory.authStore
 
   export let displayNotAllowed = true
 

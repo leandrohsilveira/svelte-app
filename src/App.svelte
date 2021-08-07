@@ -1,22 +1,15 @@
 <script lang="ts">
   import { BrowserRouter, Route } from './router'
-  import { AuthRouter, AuthStoreImpl, LoginServiceImpl } from './auth'
-  import { createServiceFactory } from './utils'
+  import { AuthRouter } from './auth'
   import { Page } from './components'
   import Layout from './layout'
-  import { LocalStorageService } from './utils'
   import { RequireMatch } from './router'
   import rootNavigator from './routes'
+  import { UserRouter } from './user'
+  import { userNavigator } from './navigators'
+  import appFactory from './factories'
 
-  const storageService = new LocalStorageService(window.localStorage)
-  const loginService = new LoginServiceImpl()
-  const authStore = new AuthStoreImpl({ authenticated: false }, storageService)
-
-  createServiceFactory({
-    loginService,
-    authStore,
-    storageService,
-  })
+  appFactory.create()
 </script>
 
 <BrowserRouter>
@@ -32,6 +25,7 @@
         <Page title="Contact us">Contact us :)</Page>
       </Route>
       <AuthRouter />
+      <UserRouter navigator={userNavigator} />
       <svelte:fragment slot="noMatch">
         <Page title="Not found">
           Oops! the requested page does not exists :(

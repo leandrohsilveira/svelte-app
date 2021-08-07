@@ -1,16 +1,16 @@
 <script lang="ts">
   import { fade } from 'svelte/transition'
   import { Icon, Stacked } from '../components'
-  import { getInstance } from '../utils'
   import { LoginForm } from './login'
   import type { LoginSubmitEventDetail } from './login'
   import { Person } from '../icons'
+  import appFactory from '../factories'
 
   export let isLoggingIn = false
 
   const fadeOptions = { duration: 250 }
-  const loginService = getInstance('loginService')
-  const authStore = getInstance('authStore')
+  const loginService = appFactory.loginService
+  const authStore = appFactory.authStore
   const isAuthenticated = authStore.isAuthenticated
   const loggedName = authStore.loggedName
 

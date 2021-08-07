@@ -1,31 +1,29 @@
 import { render } from '@testing-library/svelte'
 import { tick } from 'svelte'
-import { defer, Deferred, provideFactory, setContextMap } from '../utils'
+import { defer, Deferred } from '../utils'
 import { AuthStoreImpl } from './AuthStore'
 import type { LoginResult } from './login'
 import { AuthToolbarPO } from './AuthToolbar.po'
 import AuthToolbar from './AuthToolbar.svelte'
+import appFactory from '../factories'
 
 describe('AuthToolbar component', () => {
   const name = 'Test User'
   const username = 'test'
   const password = 'pass'
-  let context: Map<string, any>
   let deferred: Deferred<LoginResult>
+
   const loginService: any = {
     login: jest.fn(() => deferred.promise),
   }
 
   beforeEach(() => {
-    context = new Map()
-    setContextMap(context)
-    provideFactory({
-      loginService,
-    })
+    appFactory.create()
+    appFactory.provide({ loginService })
   })
 
   test('Should display "Logging in" during login request', async () => {
-    provideFactory({
+    appFactory.provide({
       authStore: new AuthStoreImpl({ authenticated: false }),
     })
     deferred = defer()
@@ -43,9 +41,10 @@ describe('AuthToolbar component', () => {
   })
 
   test('Should display "Logged in as $name ($username)" after login is completed', async () => {
-    provideFactory({
+    appFactory.provide({
       authStore: new AuthStoreImpl({ authenticated: false }),
     })
+
     deferred = defer()
 
     const po = new AuthToolbarPO(render(AuthToolbar))
@@ -60,7 +59,7 @@ describe('AuthToolbar component', () => {
   })
 
   test('Should display "Logged in as $name ($username)" when user actually is logged in', async () => {
-    provideFactory({
+    appFactory.provide({
       authStore: new AuthStoreImpl({
         authenticated: true,
         username,

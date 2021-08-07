@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Guard, Page } from '../../components'
-  import { getInstance } from '../../utils'
+  import appFactory from '../../factories'
 
-  const { isAuthenticated } = getInstance('authStore')
+  const { isAuthenticated } = appFactory.authStore
 
   export let displayNotAllowed = true
 </script>

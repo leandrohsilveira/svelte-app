@@ -4,10 +4,10 @@
   import authNavigator from '../auth/routes'
 
   import { Drawer, Item, Stacked } from '../components'
-  import { getInstance } from '../utils'
   import Header from './Header.svelte'
+  import AuthenticatedGuard from '../auth/guards/AuthenticatedGuard.svelte'
+  import AnonymousGuard from '../auth/guards/AnonymousGuard.svelte'
 
-  const { isAuthenticated } = getInstance('authStore')
   let drawerOpened = false
   let innerWidth: number
 
@@ -33,7 +33,7 @@
       Home
     </a>
   </Item>
-  {#if $isAuthenticated}
+  <AuthenticatedGuard displayNotAllowed={false}>
     <Item on:click={toggleDrawer}>
       <a
         href={authNavigator.routes.editCurrentUser}
@@ -44,7 +44,8 @@
         My data
       </a>
     </Item>
-  {:else}
+  </AuthenticatedGuard>
+  <AnonymousGuard displayNotAllowed={false}>
     <Item on:click={toggleDrawer}>
       <a
         href={authNavigator.routes.signup}
@@ -55,7 +56,7 @@
         Sign-up
       </a>
     </Item>
-  {/if}
+  </AnonymousGuard>
   <Item on:click={toggleDrawer}>
     <a
       href={rootNavigator.routes.about}

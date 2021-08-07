@@ -1,5 +1,5 @@
-import type { UserFormData } from '../../user'
-import { UserRole } from '../../user'
+import type { UserFormData } from '../../user/UserForm'
+import { UserRole } from '../../user/user-roles'
 import userMocks from '../../user/user.mock'
 import { uuid } from '../../utils'
 

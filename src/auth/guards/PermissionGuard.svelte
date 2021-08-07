@@ -1,17 +1,17 @@
 <script lang="ts">
   import { Page } from '../../components'
+  import appFactory from '../../factories'
   import type { UserRole } from '../../user'
-  import { getInstance } from '../../utils'
   import AuthenticatedGuard from './AuthenticatedGuard.svelte'
 
-  const roles = getInstance('authStore').loggedRoles
+  const { loggedRoles } = appFactory.authStore
 
   export let displayNotAllowed = true
   export let some: UserRole[] = []
   export let every: UserRole[] = []
 
-  $: someRoles = some.length > 0 ? some.some(hasRole($roles)) : true
-  $: everyRoles = every.length > 0 ? every.every(hasRole($roles)) : true
+  $: someRoles = some.length > 0 ? some.some(hasRole($loggedRoles)) : true
+  $: everyRoles = every.length > 0 ? every.every(hasRole($loggedRoles)) : true
 
   function hasRole(roles: UserRole[]) {
     return (role: UserRole) => (roles ?? []).indexOf(role) >= 0
