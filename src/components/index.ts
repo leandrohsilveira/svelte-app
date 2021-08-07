@@ -7,5 +7,6 @@ export { default as Icon } from './Icon.svelte'
 export { default as Slider } from './Slider.svelte'
 export { default as ButtonContainer } from './ButtonContainer.svelte'
 export { default as Guard } from './Guard.svelte'
+export { default as Table } from './Table.svelte'
 
 export * from './color'
