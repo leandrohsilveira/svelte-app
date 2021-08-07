@@ -1,11 +1,12 @@
 import { Readable, Unsubscriber, Writable, writable } from 'svelte/store'
+import type { UserRole } from '../user'
 import { select, StorageService } from '../utils'
 
 export type AuthenticatedState = {
   authenticated: true
   username: string
   name: string
-  roles: string[]
+  roles: UserRole[]
 }
 
 export type AnonymousState = {
@@ -19,11 +20,15 @@ export interface AuthStore {
 
   isAuthenticated: Readable<boolean>
 
+  authenticatedState: Readable<AuthenticatedState>
+
   loggedUsername: Readable<string>
 
   loggedName: Readable<string>
 
-  setAuthenticated(username: string, name: string, roles: string[]): void
+  loggedRoles: Readable<UserRole[]>
+
+  setAuthenticated(username: string, name: string, roles: UserRole[]): void
 
   setAnonymous(): void
 }
@@ -49,23 +54,29 @@ export class AuthStoreImpl implements AuthStore {
     return select(this.state, (state) => state.authenticated)
   }
 
-  get loggedUsername() {
+  get authenticatedState() {
     return select(this.state, (state) =>
-      state.authenticated ? state.username : undefined
+      state.authenticated ? state : undefined
     )
   }
 
+  get loggedUsername() {
+    return select(this.authenticatedState, (state) => state?.username)
+  }
+
   get loggedName() {
-    return select(this.state, (state) =>
-      state.authenticated ? state.name : undefined
-    )
+    return select(this.authenticatedState, (state) => state?.name)
+  }
+
+  get loggedRoles() {
+    return select(this.authenticatedState, (state) => state?.roles)
   }
 
   setAnonymous() {
     this.store.set({ authenticated: false })
   }
 
-  setAuthenticated(username: string, name: string, roles: string[]) {
+  setAuthenticated(username: string, name: string, roles: UserRole[]) {
     this.store.update((state) => ({
       ...state,
       authenticated: true,

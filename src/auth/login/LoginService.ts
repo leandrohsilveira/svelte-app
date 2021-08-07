@@ -1,20 +1,12 @@
 import type { UserFormData } from '../../user'
+import { UserRole } from '../../user'
+import userMocks from '../../user/user.mock'
 import { uuid } from '../../utils'
-
-const mocks = [
-  {
-    id: '37d83f27-2aba-4f72-a819-eeb20d908a3e',
-    name: 'Administrator',
-    username: 'admin',
-    password: '123456',
-    roles: ['user', 'admin'],
-  },
-]
 
 export type LoginResult = {
   username: string
   name: string
-  roles: string[]
+  roles: UserRole[]
 }
 
 export interface LoginService {
@@ -31,12 +23,12 @@ export class LoginServiceImpl implements LoginService {
     return new Promise<string>((resolve) => {
       setTimeout(() => {
         const id = uuid()
-        mocks.push({
+        userMocks.push({
           id,
           name,
           username,
           password,
-          roles: ['user'],
+          roles: [UserRole.USER],
         })
         resolve(id)
       }, this.delayTime)
@@ -46,7 +38,7 @@ export class LoginServiceImpl implements LoginService {
   login(username: string, password: string) {
     return new Promise<LoginResult>((resolve, reject) => {
       setTimeout(() => {
-        const user = mocks.find(
+        const user = userMocks.find(
           (mock) => mock.username === username && mock.password === password
         )
         if (user)
